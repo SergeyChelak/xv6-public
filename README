@@ -44,7 +44,8 @@ We don't process error reports (see note on top of this file).
 SOURCE LAYOUT
 
     boot/     boot sector (bootasm.S, bootmain.c)
-    kernel/   the kernel and its headers
+    common/   headers shared by boot, kernel, user programs and mkfs
+    kernel/   the kernel and its private headers
     user/     user programs and the user library (ulib.c, usys.S, user.h)
     mkfs/     host tool that builds the file system image
     tools/    developer helpers (gdb macros, panic decoder)

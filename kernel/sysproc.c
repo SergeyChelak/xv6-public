@@ -1,10 +1,10 @@
-#include "types.h"
-#include "x86.h"
+#include "common/types.h"
+#include "common/x86.h"
 #include "defs.h"
 #include "date.h"
-#include "param.h"
-#include "memlayout.h"
-#include "mmu.h"
+#include "common/param.h"
+#include "common/memlayout.h"
+#include "common/mmu.h"
 #include "proc.h"
 
 int

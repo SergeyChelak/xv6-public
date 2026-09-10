@@ -2,11 +2,11 @@
 // memory for user processes, kernel stacks, page table pages,
 // and pipe buffers. Allocates 4096-byte pages.
 
-#include "types.h"
+#include "common/types.h"
 #include "defs.h"
-#include "param.h"
-#include "memlayout.h"
-#include "mmu.h"
+#include "common/param.h"
+#include "common/memlayout.h"
+#include "common/mmu.h"
 #include "spinlock.h"
 
 void freerange(void *vstart, void *vend);

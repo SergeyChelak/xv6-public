@@ -1,12 +1,12 @@
 # basic headers
-kernel/types.h
-kernel/param.h
-kernel/memlayout.h
+common/types.h
+common/param.h
+common/memlayout.h
 kernel/defs.h
-kernel/x86.h
-kernel/asm.h
-kernel/mmu.h
-kernel/elf.h
+common/x86.h
+common/asm.h
+common/mmu.h
+common/elf.h
 kernel/date.h
 
 # entering xv6
@@ -26,20 +26,20 @@ kernel/swtch.S
 kernel/kalloc.c
 
 # system calls
-kernel/traps.h
+common/traps.h
 kernel/vectors.pl
 kernel/trapasm.S
 kernel/trap.c
-kernel/syscall.h
+common/syscall.h
 kernel/syscall.c
 kernel/sysproc.c
 
 # file system
 kernel/buf.h
 kernel/sleeplock.h
-kernel/fcntl.h
-kernel/stat.h
-kernel/fs.h
+common/fcntl.h
+common/stat.h
+common/fs.h
 kernel/file.h
 kernel/ide.c
 kernel/bio.c

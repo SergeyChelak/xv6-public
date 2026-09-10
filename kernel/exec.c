@@ -1,11 +1,11 @@
-#include "types.h"
-#include "param.h"
-#include "memlayout.h"
-#include "mmu.h"
+#include "common/types.h"
+#include "common/param.h"
+#include "common/memlayout.h"
+#include "common/mmu.h"
 #include "proc.h"
 #include "defs.h"
-#include "x86.h"
-#include "elf.h"
+#include "common/x86.h"
+#include "common/elf.h"
 
 int
 exec(char *path, char **argv)

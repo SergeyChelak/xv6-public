@@ -2,10 +2,10 @@
 // File descriptors
 //
 
-#include "types.h"
+#include "common/types.h"
 #include "defs.h"
-#include "param.h"
-#include "fs.h"
+#include "common/param.h"
+#include "common/fs.h"
 #include "spinlock.h"
 #include "sleeplock.h"
 #include "file.h"

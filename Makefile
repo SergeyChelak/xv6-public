@@ -2,7 +2,10 @@
 #
 # Source tree:
 #   boot/     boot sector (bootasm.S, bootmain.c) and sign.pl, which pads it
-#   kernel/   the kernel, its headers, kernel.ld and vectors.pl
+#   common/   headers shared by boot/, kernel/, user/ and mkfs/: basic types,
+#             memory layout, MMU/ELF/x86 definitions, the syscall ABI
+#             (syscall.h, traps.h, stat.h, fcntl.h) and the on-disk format (fs.h)
+#   kernel/   the kernel, its private headers, kernel.ld and vectors.pl
 #   user/     user programs, the user library (ulib.c, usys.S, printf.c,
 #             umalloc.c, user.h) and initcode.S, the first user program
 #   mkfs/     host tool that builds the file system image
@@ -99,8 +102,13 @@ OBJCOPY = $(TOOLPREFIX)objcopy
 OBJDUMP = $(TOOLPREFIX)objdump
 CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -O2 -Wall -MD -ggdb -m32 -Werror -fno-omit-frame-pointer
 CFLAGS += $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector)
+# xv6 never enables SSE (CR4.OSFXSR), so an SSE instruction faults before the
+# IDT exists and the machine resets. Native x86-64 compilers default to
+# -march=x86-64 (SSE2 on) even with -m32, and gcc >= 12 vectorizes at -O2.
+CFLAGS += -mno-sse -mno-mmx
 ASFLAGS = -m32 -gdwarf-2 -Wa,-divide
-# Sources outside kernel/ name the kernel headers explicitly ("kernel/types.h").
+# Shared headers are always named by path ("common/types.h"); kernel-private
+# ones are found next to the kernel sources ("defs.h").
 CFLAGS += -I.
 ASFLAGS += -I.
 # FreeBSD ld wants ``elf_i386_fbsd''
@@ -227,7 +235,7 @@ $(B)/$U/_forktest: $(B)/$U/forktest.o $(ULIB)
 	$(LD) $(LDFLAGS) -N -e main -Ttext 0 -o $@ $(B)/$U/forktest.o $(B)/$U/ulib.o $(B)/$U/usys.o
 	$(OBJDUMP) -S $@ > $(B)/$U/forktest.asm
 
-$(B)/mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h | $(B)/mkfs
+$(B)/mkfs/mkfs: mkfs/mkfs.c $(addprefix common/,types.h fs.h stat.h param.h) | $(B)/mkfs
 	gcc -Werror -Wall -I. -o $@ mkfs/mkfs.c
 
 # Prevent deletion of intermediate files, e.g. cat.o, after first build, so

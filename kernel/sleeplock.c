@@ -1,11 +1,11 @@
 // Sleeping locks
 
-#include "types.h"
+#include "common/types.h"
 #include "defs.h"
-#include "param.h"
-#include "x86.h"
-#include "memlayout.h"
-#include "mmu.h"
+#include "common/param.h"
+#include "common/x86.h"
+#include "common/memlayout.h"
+#include "common/mmu.h"
 #include "proc.h"
 #include "spinlock.h"
 #include "sleeplock.h"
