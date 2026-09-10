@@ -1,0 +1,80 @@
+# basic headers
+kernel/types.h
+kernel/param.h
+kernel/memlayout.h
+kernel/defs.h
+kernel/x86.h
+kernel/asm.h
+kernel/mmu.h
+kernel/elf.h
+kernel/date.h
+
+# entering xv6
+kernel/entry.S
+kernel/entryother.S
+kernel/main.c
+
+# locks
+kernel/spinlock.h
+kernel/spinlock.c
+
+# processes
+kernel/vm.c
+kernel/proc.h
+kernel/proc.c
+kernel/swtch.S
+kernel/kalloc.c
+
+# system calls
+kernel/traps.h
+kernel/vectors.pl
+kernel/trapasm.S
+kernel/trap.c
+kernel/syscall.h
+kernel/syscall.c
+kernel/sysproc.c
+
+# file system
+kernel/buf.h
+kernel/sleeplock.h
+kernel/fcntl.h
+kernel/stat.h
+kernel/fs.h
+kernel/file.h
+kernel/ide.c
+kernel/bio.c
+kernel/sleeplock.c
+kernel/log.c
+kernel/fs.c
+kernel/file.c
+kernel/sysfile.c
+kernel/exec.c
+
+# pipes
+kernel/pipe.c
+
+# string operations
+kernel/string.c
+
+# low-level hardware
+kernel/mp.h
+kernel/mp.c
+kernel/lapic.c
+kernel/ioapic.c
+kernel/kbd.h
+kernel/kbd.c
+kernel/console.c
+kernel/uart.c
+
+# user-level
+user/initcode.S
+user/usys.S
+user/init.c
+user/sh.c
+
+# bootloader
+boot/bootasm.S
+boot/bootmain.c
+
+# link
+kernel/kernel.ld
